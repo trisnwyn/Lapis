@@ -1,0 +1,35 @@
+{
+  "manifest_version": 3,
+  "name": "Lapis — cầu nối LMS",
+  "version": "0.1.0",
+  "description": "Đồng bộ lịch học từ LMS của trường vào webapp Lapis.",
+  "permissions": ["storage"],
+  "host_permissions": ["<all_urls>"],
+  "background": {
+    "service_worker": "background.js"
+  },
+  "action": {
+    "default_popup": "popup.html",
+    "default_title": "Lapis"
+  },
+  "content_scripts": [
+    {
+      "matches": ["<all_urls>"],
+      "js": ["content/injected.js"],
+      "run_at": "document_start",
+      "world": "MAIN",
+      "all_frames": true
+    },
+    {
+      "matches": ["<all_urls>"],
+      "js": ["content/lms.js"],
+      "run_at": "document_idle",
+      "all_frames": true
+    },
+    {
+      "matches": ["http://localhost/*", "http://127.0.0.1/*", "https://*.vercel.app/*"],
+      "js": ["content/bridge.js"],
+      "run_at": "document_idle"
+    }
+  ]
+}
