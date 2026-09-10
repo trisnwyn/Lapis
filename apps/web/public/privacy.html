@@ -1,0 +1,93 @@
+<!doctype html>
+<html lang="vi">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Lapis — Chính sách quyền riêng tư</title>
+    <style>
+      * { box-sizing: border-box; }
+      body {
+        margin: 0;
+        padding: 48px 20px;
+        background: #faf8f5;
+        color: #1c1917;
+        font: 15px/1.7 system-ui, -apple-system, sans-serif;
+      }
+      .wrap { max-width: 720px; margin: 0 auto; }
+      h1 { font-size: 30px; margin: 0 0 6px; }
+      h1 em { color: #4f46e5; font-style: italic; }
+      .updated { color: #78716c; font-size: 13px; margin-bottom: 36px; }
+      h2 { font-size: 18px; margin: 32px 0 10px; }
+      p, li { margin: 8px 0; }
+      ul { padding-left: 22px; }
+      .card {
+        background: #fff; border: 1px solid #e7e2da; border-radius: 16px;
+        padding: 28px 32px;
+      }
+      .foot {
+        margin-top: 40px; text-align: center; color: #78716c; font-size: 13px;
+      }
+      a { color: #4f46e5; }
+    </style>
+  </head>
+  <body>
+    <div class="wrap">
+      <h1>Lapis — Chính sách quyền riêng tư</h1>
+      <p class="updated">Cập nhật: 10/09/2026</p>
+      <div class="card">
+        <h2>1. Lapis là gì</h2>
+        <p>
+          Lapis là công cụ quản lý việc học chạy hoàn toàn phía trình duyệt (client-side),
+          dành cho sinh viên: quản lý khóa học, nhiệm vụ, tài liệu local, trợ lý AI và
+          đồng bộ lịch học lên Google Calendar cá nhân của bạn.
+        </p>
+
+        <h2>2. Dữ liệu của bạn nằm ở đâu</h2>
+        <ul>
+          <li>
+            Toàn bộ dữ liệu (khóa học, nhiệm vụ, lịch học đã nhập, hội thoại, nội dung
+            trích xuất tài liệu, cài đặt) được lưu <b>trong IndexedDB trên trình duyệt
+            của chính bạn</b>. Chúng tôi không vận hành server lưu trữ dữ liệu người dùng.
+          </li>
+          <li>
+            Xóa dữ liệu trình duyệt / cài đặt "Clear site data" = dữ liệu bị mất. Vui lòng
+            dùng tính năng Backup JSON trong Cài đặt để giữ bản sao.
+          </li>
+        </ul>
+
+        <h2>3. Dữ liệu được gửi đi đâu</h2>
+        <ul>
+          <li>
+            <b>OpenRouter</b>: nội dung trích xuất từ tài liệu và câu hỏi của bạn được gửi
+            tới OpenRouter (dựa trên API key của riêng bạn) khi bạn dùng tính năng chat AI
+            hoặc phân tích đề bài. Key chỉ lưu trong trình duyệt của bạn.
+          </li>
+          <li>
+            <b>Google Calendar API</b>: khi bạn bấm "Đồng bộ Google Calendar", Lapis — thông
+            qua Google OAuth — tạo/cập nhật các sự kiện lịch học tại lịch Google cá nhân
+            của bạn. Lapis không đọc bất kỳ sự kiện nào khác trên lịch của bạn.
+          </li>
+          <li>
+            <b>API LMS của trường</b>: extension Chrome chỉ đọc dữ liệu lịch học trên trang
+            LMS trong phiên đăng nhập của chính bạn, không gửi dữ liệu cho bất kỳ bên nào khác.
+          </li>
+        </ul>
+        <p>Lapis <b>không bán, không chia sẻ, không theo dõi</b> dữ liệu của bạn dưới bất kỳ hình thức nào.</p>
+
+        <h2>4. Quyền truy cập Google Calendar</h2>
+        <p>
+          Lapis chỉ yêu cầu quyền giới hạn <code>calendar.events</code> với mục đích tạo
+          sự kiện lịch học do chính bạn chọn đồng bộ. Bạn có thể thu hồi quyền bất cứ lúc
+          nào tại
+          <a href="https://myaccount.google.com/permissions">myaccount.google.com/permissions</a>.
+        </p>
+
+        <h2>5. Liên hệ</h2>
+        <p>
+          Mọi câu hỏi về quyền riêng tư: <a href="mailto:duct9901@gmail.com">duct9901@gmail.com</a>.
+        </p>
+      </div>
+      <p class="foot"><a href="/">← Về Lapis</a></p>
+    </div>
+  </body>
+</html>
