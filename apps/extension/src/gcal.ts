@@ -14,7 +14,7 @@ export interface GcalSyncResult {
 }
 
 export const GCAL_CLIENT_ID =
-  '458322241332-joqocs5d506ajj0mbb56jkr167lk8sh0.apps.googleusercontent.com';
+  '458322241332-qf7g6u45qk70qfqfoc0a86lp81hpfan.apps.googleusercontent.com';
 export const GCAL_SCOPE = 'https://www.googleapis.com/auth/calendar.events';
 
 const TOKEN_CACHE_KEY = 'gcalWebAuthToken';
@@ -70,6 +70,10 @@ async function webAuthFlowTokenRaw(): Promise<string> {
   authUrl.searchParams.set('redirect_uri', redirectUri);
   authUrl.searchParams.set('scope', GCAL_SCOPE);
   authUrl.searchParams.set('prompt', 'consent');
+  // state ngẫu nhiên: đảm bảo URL mỗi lần thử là unique → trình duyệt không phục vụ
+  // cached error page từ lần thử trước (nguyên nhân redirect_uri_mismatch "ma")
+  authUrl.searchParams.set('state', crypto.randomUUID());
+  authUrl.searchParams.set('nonce', crypto.randomUUID());
 
   const responseUrl: string = await new Promise((resolve, reject) => {
     chrome.identity.launchWebAuthFlow(

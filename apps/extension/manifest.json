@@ -6,7 +6,7 @@
   "permissions": ["storage", "identity"],
   "key": "MIIBIjANBgkqhkiG9w0BAQEFAAOCAQ8AMIIBCgKCAQEAvOOvz6CTlL5/gJY1zResxoAdML5f3vvM9z5pyIjH8VrmIvpD86tuBzD6B2mBYrPZn/N1uZKhrjMO1f8d6UhZS1L1//+Y5xV8Cq2Ioko0DDRaFFy5pqWjM2JiB0cNWUKdGevu9cAJXO0sOm6/fjN4DrfGsaavJ2Xd1h6e/P97kiE3lv5VaeUIGcGiHoFr3eO/wIAl6TzSCFapek5/mfcrdYG0UAOrcs6ihrLIDtSrUya3wmB5sfkqr3p8Qjr0JT0hj5pI4z3Frs9pQWqsLGdRkaSunDdw8DEPezt09rDLSs6J1bhAiiWVDDZ59IQAXKm34+9n2pO+LuDOqu/IqgsKEwIDAQAB",
   "oauth2": {
-    "client_id": "458322241332-joqocs5d506ajj0mbb56jkr167lk8sh0.apps.googleusercontent.com",
+    "client_id": "458322241332-qf7g6u45qk70qfqfoc0a86lp81hpfan.apps.googleusercontent.com",
     "scopes": ["https://www.googleapis.com/auth/calendar.events"]
   },
   "host_permissions": ["<all_urls>"],
