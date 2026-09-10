@@ -54,8 +54,12 @@ function authTokenChrome(interactive: boolean): Promise<string | null> {
   });
 }
 
-/** launchWebAuthFlow implicit flow — chạy được trên Edge. Token cache 90% thời gian sống. */
-async function webAuthFlowToken(): Promise<string> {
+/** launchWebAuthFlow implicit flow — chạy được trên Edge. Token cache 90% thời gian sống.
+ * Single-flight: chỉ cho phép 1 flow tại một thời điểm; nếu Edge báo "Only one web auth
+ * flow is allowed at a time" → tự đợi + thử lại (tối đa 3 lần). */
+let flowInFlight: Promise<string> | null = null;
+
+async function webAuthFlowTokenRaw(): Promise<string> {
   const cached = await storageGet(TOKEN_CACHE_KEY);
   if (cached && cached.expiresAt > Date.now() + 60_000) return cached.token;
 
@@ -87,11 +91,39 @@ async function webAuthFlowToken(): Promise<string> {
   const expiresIn = Number(params.get('expires_in') ?? '3600');
   if (!token) throw new Error('Google không trả về access token');
 
-  await storageSetToken({
+  const cachedToken: CachedToken = {
     token,
     expiresAt: Date.now() + expiresIn * 900,
-  });
+  };
+  await storageSetToken(cachedToken);
   return token;
+}
+
+const sleep = (ms: number): Promise<void> =>
+  new Promise((resolve) => window.setTimeout(resolve, ms));
+
+async function webAuthFlowToken(): Promise<string> {
+  if (flowInFlight) return flowInFlight;
+  flowInFlight = (async () => {
+    for (let attempt = 0; attempt < 3; attempt++) {
+      try {
+        return await webAuthFlowTokenRaw();
+      } catch (e) {
+        const message = e instanceof Error ? e.message : String(e);
+        if (/only one web auth flow/i.test(message) && attempt < 2) {
+          await sleep(1500 + attempt * 2000);
+          continue;
+        }
+        throw e;
+      }
+    }
+    throw new Error('Google auth flow không khởi động được');
+  })();
+  try {
+    return await flowInFlight;
+  } finally {
+    flowInFlight = null;
+  }
 }
 
 /** Token: Chrome → identity cache; Edge → webAuthFlow cache. */
