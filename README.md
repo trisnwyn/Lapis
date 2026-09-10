@@ -1,8 +1,11 @@
 # Lapis
 
-Trợ lý học tập cho sinh viên — một **workspace** cho mỗi khóa học: nhiệm vụ,
-thư mục tài liệu local, và AI panel. Chạy hoàn toàn phía client, không server,
-dùng OpenRouter API key của riêng bạn (lưu trong IndexedDB của trình duyệt).
+Trợ lý học tập cho sinh viên — **product chính là extension Chrome**:
+mở trang Lịch học trên LMS → extension tự bắt lịch → bấm nút trong popup →
+lịch đẩy **thẳng vào Google Calendar** (OAuth, không trùng khi re-sync).
+
+Webapp là **dashboard** hiển thị: khóa học, nhiệm vụ, panel Hôm nay/Ngày mai,
+chat AI với tài liệu, backup JSON. Nhập lịch vào dashboard qua extension hoặc paste JSON.
 
 ## Cấu trúc
 
