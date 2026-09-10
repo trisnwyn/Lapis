@@ -49,18 +49,16 @@ pnpm build      # build tất cả package
 **Người dùng (không cần console):** bấm "Đồng bộ tuần này"/"Đồng bộ toàn bộ lịch" → popup
 Google xin quyền lần đầu → done. Re-sync không trùng vì event id cố định.
 
-## Deploy (M6)
+## Deploy
 
-Webapp là SPA tĩnh — deploy lên **Vercel**:
+Đã deploy: production domain **https://lapis-one-tan.vercel.app** (Vercel project `lapis`
+trong team của bạn, Root Directory = `apps/web`).
 
-1. Push repo lên GitHub
-2. [vercel.com/new](https://vercel.com/new) → import repo (Vercel tự đọc `vercel.json`:
-   build `pnpm --filter @lapis/web build`, output `apps/web/dist`)
-3. Xong — domain tự cấp (`*.vercel.app`)
+- Config build nằm ở `apps/web/vercel.json` (install/build từ workspace root, output `dist`)
+- **Vercel env** (Production + Preview): `VITE_GOOGLE_CLIENT_ID=<OAuth client ID>`
+- Deploy GitHub-based tự chạy khi push; hoặc CLI: `npx vercel --prod`
 
-Hoặc bằng CLI: `npx vercel` từ thư mục gốc.
-
-Không cần biến môi trường: OpenRouter key người dùng tự nhập trong app,
+Không cần biến môi trường khác: OpenRouter key người dùng tự nhập trong app,
 mọi data ở IndexedDB trình duyệt của từng người.
 
 ## Cài extension (M5)
