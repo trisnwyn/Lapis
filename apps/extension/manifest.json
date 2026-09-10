@@ -1,9 +1,13 @@
 {
   "manifest_version": 3,
   "name": "Lapis — cầu nối LMS",
-  "version": "0.1.0",
-  "description": "Đồng bộ lịch học từ LMS của trường vào webapp Lapis.",
-  "permissions": ["storage"],
+  "version": "0.2.0",
+  "description": "Bắt lịch học từ LMS → đồng bộ thẳng Google Calendar. Dashboard Lapis chỉ là nơi hiển thị.",
+  "permissions": ["storage", "identity"],
+  "oauth2": {
+    "client_id": "458322241332-joqocs5d506ajj0mbb56jkr167lk8sh0.apps.googleusercontent.com",
+    "scopes": ["https://www.googleapis.com/auth/calendar.events"]
+  },
   "host_permissions": ["<all_urls>"],
   "background": {
     "service_worker": "background.js"
